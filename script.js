@@ -23,4 +23,18 @@ function getComputerChoice() {
   return options[randomIndex];
 }
 
-function playRound(humanSelection, computerSelection) {}
+function playRound(humanSelection, computerSelection) {
+  if (humanSelection === computerSelection) {
+    resultText.textContent = `It's a tie! You both chose ${humanSelection}.`;
+  } else if (
+    (humanSelection === 'rock' && computerSelection === 'scissors') ||
+    (humanSelection === 'paper' && computerSelection === 'rock') ||
+    (humanSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    resultText.textContent = `You win! ${humanSelection} beats ${computerSelection}.`;
+    updateScore('player');
+  } else {
+    resultText.textContent = `You lose! ${computerSelection} beats ${humanSelection}.`;
+    updateScore('computer');
+  }
+}
