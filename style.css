@@ -1,0 +1,18 @@
+html {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #034410;
+  color: #fff;
+  padding: auto;
+  text-align: center;
+  width: 100%;
+  font-size: 24px;
+  font-weight: bold;
+}
