@@ -5,17 +5,8 @@ const resultText = document.getElementById('result-text');
 const playerScoreEl = document.getElementById('player-score');
 const computerScoreEl = document.getElementById('computer-score');
 
-rockButton.addEventListener('click', () =>
-	playRound('rock', getComputerChoice())
-);
-paperButton.addEventListener('click', () =>
-	playRound('paper', getComputerChoice())
-);
-scissorsButton.addEventListener('click', () =>
-	playRound('scissors', getComputerChoice())
-);
-
-function getHumanChoice() {}
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
   const options = ['rock', 'paper', 'scissors'];
@@ -31,10 +22,41 @@ function playRound(humanSelection, computerSelection) {
     (humanSelection === 'paper' && computerSelection === 'rock') ||
     (humanSelection === 'scissors' && computerSelection === 'paper')
   ) {
+    playerScore++;
     resultText.textContent = `You win! ${humanSelection} beats ${computerSelection}.`;
-    updateScore('player');
   } else {
+    computerScore++;
     resultText.textContent = `You lose! ${computerSelection} beats ${humanSelection}.`;
-    updateScore('computer');
   }
+
+  playerScoreEl.textContent = `Player Score: ${playerScore}`;
+  computerScoreEl.textContent = `Computer Score: ${computerScore}`;
+
+  if (playerScore === 5 || computerScore === 5) {
+		const winner =
+			playerScore === 5
+				? '¡You win the game!'
+				: '¡Computer wins the game!';
+		resultText.textContent =
+			winner +
+			' Final Score: Player ' +
+			playerScore +
+			' - ' +
+			computerScore +
+			' Computer';
+
+		rockButton.disabled = true;
+		paperButton.disabled = true;
+		scissorsButton.disabled = true;
+	}
 }
+
+rockButton.addEventListener('click', () =>
+	playRound('rock', getComputerChoice())
+);
+paperButton.addEventListener('click', () =>
+	playRound('paper', getComputerChoice())
+);
+scissorsButton.addEventListener('click', () =>
+	playRound('scissors', getComputerChoice())
+);
